@@ -11,14 +11,11 @@ public class Main {
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setResizable(false);
         window.setTitle("2D JAVA ARPG");
-        window.pack();
-        window.setExtendedState(JFrame.MAXIMIZED_BOTH); //eventualmente cambiar a full screen con GraphicsDevice y GraphicsEnvironment
-        window.setVisible(true);
-
         Game game = new Game();
         window.add(game);
+        window.pack();
         game.startGameThread();
-
+        window.setExtendedState(JFrame.MAXIMIZED_BOTH); //eventualmente cambiar a full screen con GraphicsDevice y GraphicsEnvironment
+        window.setVisible(true);
     }
-
 }
