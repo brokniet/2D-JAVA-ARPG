@@ -1,4 +1,4 @@
-package models;
+package entity;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -13,7 +13,7 @@ public class Entity {
 
     public void update() {}
 
-    public void draw(Graphics2D g) {}
+    public void repaint(Graphics2D g) {}
 
     public int getX() {
         return x;
