@@ -5,11 +5,11 @@ import java.awt.image.BufferedImage;
 
 public class Entity {
 
-    private int x;
-    private int y;
-    private int speed;
+    protected int x;
+    protected int y;
+    protected int speed;
     public String direction;
-    public BufferedImage image;
+    //public BufferedImage image;
 
     public void update() {}
 
@@ -31,9 +31,9 @@ public class Entity {
         return direction;
     }
 
-    public BufferedImage getImage() {
-        return image;
-    }
+   // public BufferedImage getImage() {
+    //    return image;
+    //}
 
     public void setX(int x) {
         this.x = x;
@@ -51,7 +51,7 @@ public class Entity {
         this.direction = direction;
     }
 
-    public void setImage(BufferedImage image) {
-        this.image = image;
-    }
+   // public void setImage(BufferedImage image) {
+  //      this.image = image;
+    //}
 }

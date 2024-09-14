@@ -11,11 +11,12 @@ public class GameWindow extends JFrame {
         setResizable(false);
         setLocationRelativeTo(null);
         setPreferredSize(new Dimension(JFrame.MAXIMIZED_HORIZ, JFrame.MAXIMIZED_VERT));
-
-        pack();
-
-        createBufferStrategy(3);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+    }
+
+    public void setPanel(GamePanel gamePanel) {
+        add(gamePanel);
+        pack();
         setVisible(true);
     }
 

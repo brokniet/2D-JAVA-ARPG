@@ -1,5 +1,6 @@
 package game;
 
+import entity.Player;
 import input.InputHandler;
 import window.GamePanel;
 import window.GameWindow;
@@ -10,6 +11,7 @@ public class Game {
     private GamePanel gamePanel;
     private GameLoop gameLoop;
     private InputHandler inputHandler;
+    private Player player;
 
     public static void main(String[] args) {
         new Game().start();
@@ -17,11 +19,12 @@ public class Game {
 
     public void start() {
         inputHandler = new InputHandler();
-        gameLoop = new GameLoop();
-        gamePanel = new GamePanel(gameLoop, inputHandler);
+        player = new Player(50, 50, 5);
+        gamePanel = new GamePanel(player, inputHandler);
+        gameLoop = new GameLoop(inputHandler, gamePanel, player);
         gameWindow = new GameWindow();
-        gameWindow.add(gamePanel);
-        new Thread(gamePanel).start();
+        gameWindow.setPanel(gamePanel);
+        new Thread(gameLoop).start();
     }
 
 }
