@@ -8,6 +8,10 @@ import java.awt.*;
 
 public class GamePanel extends JPanel {
 
+    private final int BIT = 32;
+    private final int SCALE = 3;
+    private final int TILE_SIZE = BIT * SCALE;
+
     private Player player;
     private InputHandler inputHandler;
 
@@ -15,7 +19,7 @@ public class GamePanel extends JPanel {
         this.player = player;
         this.inputHandler = inputHandler;
         this.setPreferredSize(new Dimension(JFrame.MAXIMIZED_HORIZ, JFrame.MAXIMIZED_VERT));
-        this.setBackground(Color.black);
+        this.setBackground(Color.white);
         this.addKeyListener(inputHandler);
         this.setFocusable(true);
         this.requestFocusInWindow(true);
@@ -33,9 +37,18 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D) g;
-        graphics.setColor(Color.black);
-        player.draw(graphics);
+        player.draw(graphics, this);
         graphics.dispose();
     }
 
+    /*
+    this.getHeight() ---> 1057
+    this.getWidth() ---> 1920
+    this.getHeight()/TILE_SIZE ---> 11
+    this.getWidth()/TILE_SIZE ---> 20
+     */
+
+    public int getTileSize() {
+        return TILE_SIZE;
+    }
 }
