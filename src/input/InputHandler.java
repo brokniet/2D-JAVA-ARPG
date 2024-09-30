@@ -28,6 +28,9 @@ public class InputHandler implements KeyListener {
         if (code == KeyEvent.VK_D) rightPressed = false;
     }
 
+    public boolean movementKeysBeingPressed() {
+        return upPressed || downPressed || leftPressed || rightPressed;
+    }
     /*
     private boolean[] keys;
 

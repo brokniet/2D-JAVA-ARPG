@@ -3,7 +3,6 @@ package entity;
 import graphics.Animation;
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.util.Map;
 
 public class Entity {
@@ -12,7 +11,6 @@ public class Entity {
     protected int y;
     protected int speed;
     public String direction;
-    //public BufferedImage image;
     protected Animation currentAnimation;
     protected Map<String, Animation> animations;
 
@@ -36,10 +34,6 @@ public class Entity {
         return direction;
     }
 
-    /*public BufferedImage getImage() {
-        return image;
-    }*/
-
     public void setX(int x) {
         this.x = x;
     }
@@ -56,7 +50,4 @@ public class Entity {
         this.direction = direction;
     }
 
-    /*public void setImage(BufferedImage image) {
-        this.image = image;
-    }*/
 }

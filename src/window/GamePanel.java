@@ -26,7 +26,8 @@ public class GamePanel extends JPanel {
     }
 
     public void update() {
-        player.update(inputHandler);
+        if(inputHandler.movementKeysBeingPressed()) player.update(inputHandler);
+
     }
 
     public void render() {
