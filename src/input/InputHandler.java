@@ -17,6 +17,7 @@ public class InputHandler implements KeyListener {
         if (code == KeyEvent.VK_S) downPressed = true;
         if (code == KeyEvent.VK_A) leftPressed = true;
         if (code == KeyEvent.VK_D) rightPressed = true;
+        if (code == KeyEvent.VK_ESCAPE) System.exit(0);
     }
 
     @Override
@@ -28,7 +29,7 @@ public class InputHandler implements KeyListener {
         if (code == KeyEvent.VK_D) rightPressed = false;
     }
 
-    public boolean movementKeysBeingPressed() {
+    public boolean actionKeysBeingPressed() {
         return upPressed || downPressed || leftPressed || rightPressed;
     }
     /*

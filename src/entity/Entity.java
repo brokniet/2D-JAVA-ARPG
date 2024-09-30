@@ -1,16 +1,17 @@
 package entity;
 
+import core.Movement;
 import graphics.Animation;
 
 import java.awt.*;
 import java.util.Map;
 
-public class Entity {
+public abstract class Entity {
 
     protected int x;
     protected int y;
     protected int speed;
-    public String direction;
+    protected Movement movement;
     protected Animation currentAnimation;
     protected Map<String, Animation> animations;
 
@@ -30,10 +31,6 @@ public class Entity {
         return speed;
     }
 
-    public String getDirection() {
-        return direction;
-    }
-
     public void setX(int x) {
         this.x = x;
     }
@@ -46,8 +43,13 @@ public class Entity {
         this.speed = speed;
     }
 
-    public void setDirection(String direction) {
-        this.direction = direction;
+    public void setAnimation(String key) {
+        if(animations.containsKey(key)) {
+            currentAnimation = animations.get(key);
+        }
     }
 
+    public Animation getCurrentAnimation() {
+        return currentAnimation;
+    }
 }
