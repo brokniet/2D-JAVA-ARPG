@@ -1,6 +1,6 @@
 package game;
 
-import entity.Player;
+import entities.Player;
 import input.InputHandler;
 import window.GamePanel;
 import window.GameWindow;

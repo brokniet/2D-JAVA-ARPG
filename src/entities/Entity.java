@@ -1,4 +1,4 @@
-package entity;
+package entities;
 
 import core.Movement;
 import graphics.Animation;

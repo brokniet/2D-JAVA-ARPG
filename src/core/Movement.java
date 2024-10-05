@@ -1,6 +1,6 @@
 package core;
 
-import entity.Entity;
+import entities.Entity;
 import input.InputHandler;
 
 public class Movement {
@@ -36,7 +36,8 @@ public class Movement {
         entity.setX(entity.getX() + (dx * entity.getSpeed()));
         entity.setY(entity.getY() + (dy * entity.getSpeed()));
 
-        if(entity.getCurrentAnimation() != null) entity.getCurrentAnimation().update();
+        if(entity.getCurrentAnimation() == null) return;
+        entity.getCurrentAnimation().update();
     }
 
     //no cambia para nada el movimiento del player, necesita fix? esta funcion deberia devolver los dx y dy modificados btw

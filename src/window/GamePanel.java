@@ -1,6 +1,6 @@
 package window;
 
-import entity.Player;
+import entities.Player;
 import input.InputHandler;
 
 import javax.swing.*;

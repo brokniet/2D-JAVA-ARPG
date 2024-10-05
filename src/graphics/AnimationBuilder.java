@@ -9,13 +9,15 @@ public class AnimationBuilder {
 
     private Map<String, Animation> animations;
     private String entityName;
+    private SpriteLoader spriteLoader;
 
     public AnimationBuilder(String entityName) {
          this.animations = new HashMap<>();
          this.entityName = entityName;
+         this.spriteLoader = SpriteLoader.getInstance();
     }
 
-    public void basicMovement() {
+    public void setBasicMovement() {
         addAnimation("walkDown", getMovementAnimation("front"));
         addAnimation("walkUp", getMovementAnimation("back"));
         addAnimation("walkRight", getMovementAnimation("right"));
@@ -26,7 +28,7 @@ public class AnimationBuilder {
         Animation animation = new Animation(100);
         for(int i = 0; i < frameQuantity; i++) {
             try {
-                BufferedImage sprite = SpriteLoader.loadImage("/" + entityName + "/" + key + "-" + i + ".png");
+                BufferedImage sprite = spriteLoader.loadImage("/" + entityName + "/" + key + "-" + (i++) + ".png");
                 animation.addFrame(new Sprite(sprite));
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -38,9 +40,9 @@ public class AnimationBuilder {
     private Animation getMovementAnimation(String key) {
         Animation animation = new Animation(100);
         try {
-            BufferedImage first = SpriteLoader.loadImage("/" + entityName + "/" + key + "-1.png");
-            BufferedImage second = SpriteLoader.loadImage("/" + entityName + "/" + key + "-2.png");
-            BufferedImage third = SpriteLoader.loadImage("/" + entityName + "/" + key + "-3.png");
+            BufferedImage first = spriteLoader.loadImage("/" + entityName + "/" + key + "-1.png");
+            BufferedImage second = spriteLoader.loadImage("/" + entityName + "/" + key + "-2.png");
+            BufferedImage third = spriteLoader.loadImage("/" + entityName + "/" + key + "-3.png");
             animation.addFrame(new Sprite(first));
             animation.addFrame(new Sprite(second));
             animation.addFrame(new Sprite(first));

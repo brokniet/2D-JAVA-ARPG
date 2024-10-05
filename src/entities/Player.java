@@ -1,4 +1,4 @@
-package entity;
+package entities;
 
 import core.Movement;
 import graphics.Animation;
@@ -25,15 +25,14 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D graphics, GamePanel gamePanel) {
-        if(currentAnimation != null) {
-            graphics.drawImage(currentAnimation.getCurrentFrame(), x, y, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
-        }
+        if(currentAnimation == null) return;
+        graphics.drawImage(currentAnimation.getCurrentFrame(), x, y, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
     }
 
     public Map<String, Animation> loadAnimations() {
-        AnimationBuilder builder = new AnimationBuilder("player");
-        builder.basicMovement();
-        return builder.build();
+        AnimationBuilder animationBuilder = new AnimationBuilder("player");
+        animationBuilder.setBasicMovement();
+        return animationBuilder.build();
     }
 
 }

@@ -1,10 +1,8 @@
 package game;
 
-import entity.Player;
+import entities.Player;
 import input.InputHandler;
 import window.GamePanel;
-
-import java.awt.event.KeyEvent;
 
 public class GameLoop implements Runnable{
 

@@ -7,8 +7,16 @@ import java.util.Objects;
 
 public class SpriteLoader {
 
-    public static BufferedImage loadImage(String path) throws IOException {
-        //return ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(path)));
+    private static SpriteLoader instance;
+
+    private SpriteLoader() { }
+
+    public static SpriteLoader getInstance() {
+        if(instance == null) instance = new SpriteLoader();
+        return instance;
+    }
+
+    public BufferedImage loadImage(String path) throws IOException {
         return ImageIO.read(Objects.requireNonNull(SpriteLoader.class.getResource(path)));
     }
 
