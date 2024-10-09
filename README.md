@@ -7,7 +7,7 @@ This time I have a bigger project in mind, and for that I listed a few things I 
 # To Do List:
 
 1. Nice and fluid player movement
-2. Camera that follows the player
+2. Camera that follows the player ✓
 3. Arena-like map with different textures and zones
 4. Enemies and entities that interact with the player
 5. Frenetic combat with weapons and spells
