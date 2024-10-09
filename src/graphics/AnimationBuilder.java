@@ -8,12 +8,12 @@ import java.util.Map;
 public class AnimationBuilder {
 
     private Map<String, Animation> animations;
-    private String entityName;
+    private String resourceName;
     private SpriteLoader spriteLoader;
 
-    public AnimationBuilder(String entityName) {
+    public AnimationBuilder(String resourceName) {
          this.animations = new HashMap<>();
-         this.entityName = entityName;
+         this.resourceName = resourceName;
          this.spriteLoader = SpriteLoader.getInstance();
     }
 
@@ -24,11 +24,16 @@ public class AnimationBuilder {
         addAnimation("walkLeft", getMovementAnimation("left"));
     }
 
-    private Animation getAnimation(String key, int frameQuantity) {
-        Animation animation = new Animation(100);
+    public void setBasicAnimation(String animationName, String key, int frameQuantity, int delay) {
+        addAnimation(animationName, getAnimation(key, frameQuantity, delay));
+    }
+
+    private Animation getAnimation(String key, int frameQuantity, int delay) {
+        Animation animation = new Animation(delay);
         for(int i = 0; i < frameQuantity; i++) {
             try {
-                BufferedImage sprite = spriteLoader.loadImage("/" + entityName + "/" + key + "-" + (i++) + ".png");
+                String path = "/" + resourceName + "/" + key + "-" + (i+1) + ".png";
+                BufferedImage sprite = spriteLoader.loadImage(path);
                 animation.addFrame(new Sprite(sprite));
             } catch (IOException e) {
                 throw new RuntimeException(e);
@@ -40,9 +45,9 @@ public class AnimationBuilder {
     private Animation getMovementAnimation(String key) {
         Animation animation = new Animation(100);
         try {
-            BufferedImage first = spriteLoader.loadImage("/" + entityName + "/" + key + "-1.png");
-            BufferedImage second = spriteLoader.loadImage("/" + entityName + "/" + key + "-2.png");
-            BufferedImage third = spriteLoader.loadImage("/" + entityName + "/" + key + "-3.png");
+            BufferedImage first = spriteLoader.loadImage("/" + resourceName + "/" + key + "-1.png");
+            BufferedImage second = spriteLoader.loadImage("/" + resourceName + "/" + key + "-2.png");
+            BufferedImage third = spriteLoader.loadImage("/" + resourceName + "/" + key + "-3.png");
             animation.addFrame(new Sprite(first));
             animation.addFrame(new Sprite(second));
             animation.addFrame(new Sprite(first));

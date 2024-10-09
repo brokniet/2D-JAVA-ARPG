@@ -18,11 +18,11 @@ public class Game {
     }
 
     public void start() {
+        gameWindow = new GameWindow();
         inputHandler = new InputHandler();
         player = new Player(50, 50, 5);
         gamePanel = new GamePanel(player, inputHandler);
         gameLoop = new GameLoop(inputHandler, gamePanel, player);
-        gameWindow = new GameWindow();
         gameWindow.setPanel(gamePanel);
         new Thread(gameLoop).start();
     }

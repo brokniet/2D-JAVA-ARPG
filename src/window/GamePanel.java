@@ -1,7 +1,9 @@
 package window;
 
+import core.Camera;
 import entities.Player;
 import input.InputHandler;
+import world.GameMap;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,20 +16,29 @@ public class GamePanel extends JPanel {
 
     private Player player;
     private InputHandler inputHandler;
+    private GameMap gameMap;
+    private Camera camera;
 
     public GamePanel(Player player, InputHandler inputHandler) {
+
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        int width = (int) screenSize.getWidth();
+        int height = (int) screenSize.getHeight();
+
         this.player = player;
         this.inputHandler = inputHandler;
-        this.setPreferredSize(new Dimension(JFrame.MAXIMIZED_HORIZ, JFrame.MAXIMIZED_VERT));
-        this.setBackground(Color.white);
+        this.gameMap = new GameMap(this);
+        this.camera = new Camera(player, width, height);
         this.addKeyListener(inputHandler);
         this.setFocusable(true);
         this.requestFocusInWindow(true);
     }
 
     public void update() {
+        //eventualmente hacer forEach para todas las entidades asi se updatean
         if(inputHandler.actionKeysBeingPressed()) player.update(inputHandler);
-
+        gameMap.update();
+        camera.update();
     }
 
     public void render() {
@@ -38,7 +49,9 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D) g;
-        player.draw(graphics, this);
+        //eventualmente hacer forEach para todas las entidades asi se pintan
+        gameMap.draw(graphics);
+        player.draw(graphics, this, camera);
         graphics.dispose();
     }
 

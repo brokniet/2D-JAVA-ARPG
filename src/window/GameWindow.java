@@ -10,13 +10,12 @@ public class GameWindow extends JFrame {
         setTitle("2D JAVA ARPG");
         setResizable(false);
         setLocationRelativeTo(null);
-        setPreferredSize(new Dimension(JFrame.MAXIMIZED_HORIZ, JFrame.MAXIMIZED_VERT));
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true); // Sin bordes
+        setExtendedState(JFrame.MAXIMIZED_BOTH); // Maximizado
     }
 
     public void setPanel(GamePanel gamePanel) {
         add(gamePanel);
-        pack();
         setVisible(true);
     }
 

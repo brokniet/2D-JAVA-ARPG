@@ -41,6 +41,7 @@ public class Movement {
     }
 
     //no cambia para nada el movimiento del player, necesita fix? esta funcion deberia devolver los dx y dy modificados btw
+    //normalizar el vector sirve para que la velocidad al ir en diagonal no sea mayor a la velocidad normal... no funca xD
     private void normalizeVector(int dx, int dy) {
         if (dx != 0 || dy != 0) {
             double length = Math.sqrt(dx * dx + dy * dy);

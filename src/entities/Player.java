@@ -1,5 +1,6 @@
 package entities;
 
+import core.Camera;
 import core.Movement;
 import graphics.Animation;
 import graphics.AnimationBuilder;
@@ -24,9 +25,15 @@ public class Player extends Entity {
        movement.movePlayer(inputHandler);
     }
 
-    public void draw(Graphics2D graphics, GamePanel gamePanel) {
+    public void draw(Graphics2D graphics, GamePanel gamePanel, Camera camera) {
         if(currentAnimation == null) return;
-        graphics.drawImage(currentAnimation.getCurrentFrame(), x, y, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+        graphics.drawImage(
+                currentAnimation.getCurrentFrame(),
+                x - camera.getX() - gamePanel.getTileSize() / 2,
+                y - camera.getY() - gamePanel.getTileSize() / 2,
+                gamePanel.getTileSize(),
+                gamePanel.getTileSize(),
+                null);
     }
 
     public Map<String, Animation> loadAnimations() {
