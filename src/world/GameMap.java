@@ -1,5 +1,6 @@
 package world;
 
+import game.GameObject;
 import graphics.Animation;
 import graphics.AnimationBuilder;
 import graphics.Sprite;
@@ -10,7 +11,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.Map;
 
-public class GameMap {
+public class GameMap implements GameObject {
 
     private GamePanel gamePanel;
     private int TILE_SIZE;

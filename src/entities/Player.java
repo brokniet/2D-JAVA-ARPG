@@ -25,14 +25,19 @@ public class Player extends Entity {
        movement.movePlayer(inputHandler);
     }
 
-    public void draw(Graphics2D graphics, GamePanel gamePanel, Camera camera) {
+    public void draw(Graphics2D graphics, int tileSize, Camera camera) {
+        /*
+        se deberia eliminar la clase Camera? lo unico que hace es setear y devolver los siguientes valores:
+        x = player.getX() - (screenWidth / 2);
+        y = player.getY() - (screenHeight / 2);
+         */
         if(currentAnimation == null) return;
         graphics.drawImage(
                 currentAnimation.getCurrentFrame(),
-                x - camera.getX() - gamePanel.getTileSize() / 2,
-                y - camera.getY() - gamePanel.getTileSize() / 2,
-                gamePanel.getTileSize(),
-                gamePanel.getTileSize(),
+                x - camera.getX() - tileSize / 2,
+                y - camera.getY() - tileSize / 2,
+                tileSize,
+                tileSize,
                 null);
     }
 

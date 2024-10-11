@@ -2,11 +2,13 @@ package window;
 
 import core.Camera;
 import entities.Player;
+import game.GameObject;
 import input.InputHandler;
 import world.GameMap;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class GamePanel extends JPanel {
 
@@ -14,13 +16,14 @@ public class GamePanel extends JPanel {
     private final int SCALE = 3;
     private final int TILE_SIZE = BIT * SCALE;
 
+    private ArrayList<GameObject> gameObjects;
     private Player player;
     private InputHandler inputHandler;
     private GameMap gameMap;
     private Camera camera;
 
     public GamePanel(Player player, InputHandler inputHandler) {
-
+        //refactor a esto, esta declarado en 2 lugares distintos :thinking:
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int width = (int) screenSize.getWidth();
         int height = (int) screenSize.getHeight();
@@ -29,16 +32,19 @@ public class GamePanel extends JPanel {
         this.inputHandler = inputHandler;
         this.gameMap = new GameMap(this);
         this.camera = new Camera(player, width, height);
+        this.gameObjects = new ArrayList<GameObject>();
+        this.gameObjects.add(player);
+        this.gameObjects.add(gameMap);
+        this.gameObjects.add(camera);
+
         this.addKeyListener(inputHandler);
         this.setFocusable(true);
         this.requestFocusInWindow(true);
     }
 
     public void update() {
-        //eventualmente hacer forEach para todas las entidades asi se updatean
         if(inputHandler.actionKeysBeingPressed()) player.update(inputHandler);
-        gameMap.update();
-        camera.update();
+        gameObjects.forEach(GameObject::update);
     }
 
     public void render() {
@@ -49,9 +55,8 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D graphics = (Graphics2D) g;
-        //eventualmente hacer forEach para todas las entidades asi se pintan
-        gameMap.draw(graphics);
-        player.draw(graphics, this, camera);
+        gameObjects.forEach(gameObject -> gameObject.draw(graphics));
+        player.draw(graphics, TILE_SIZE, camera);
         graphics.dispose();
     }
 

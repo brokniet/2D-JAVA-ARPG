@@ -1,12 +1,13 @@
 package entities;
 
 import core.Movement;
+import game.GameObject;
 import graphics.Animation;
 
 import java.awt.*;
 import java.util.Map;
 
-public abstract class Entity {
+public abstract class Entity implements GameObject {
 
     protected int x;
     protected int y;
@@ -14,10 +15,6 @@ public abstract class Entity {
     protected Movement movement;
     protected Animation currentAnimation;
     protected Map<String, Animation> animations;
-
-    public void update() {}
-
-    public void repaint(Graphics2D g) {}
 
     public int getX() {
         return x;
@@ -37,10 +34,6 @@ public abstract class Entity {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public void setSpeed(int speed) {
-        this.speed = speed;
     }
 
     public void setAnimation(String key) {

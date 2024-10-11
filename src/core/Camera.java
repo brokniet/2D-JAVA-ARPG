@@ -1,8 +1,9 @@
 package core;
 
 import entities.Player;
+import game.GameObject;
 
-public class Camera {
+public class Camera implements GameObject {
 
     private Player player;
     private int x;
